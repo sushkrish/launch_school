@@ -9,3 +9,4 @@ Important steps for git workflow:
 4. stage changes for commit
 5. commit changes to version history
 
+changing the readme file for the new branch with this sentence. 
