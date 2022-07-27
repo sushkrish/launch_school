@@ -2,7 +2,6 @@ require 'yaml'
 require 'pry'
 MESSAGES = YAML.load_file('calculator_messages.yml')
 LANGUAGE = 'en'
-puts MESSAGES.inspect
 
 def msg(key)
   MESSAGES[LANGUAGE][key]
