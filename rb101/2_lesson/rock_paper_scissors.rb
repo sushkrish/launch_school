@@ -27,6 +27,7 @@ loop do
   user_pick = get_user_pick
   machine_pick = OPTIONS.keys.sample
   display_winner(user_pick, machine_pick)
+  
   puts "Play again? y/n"
   play = gets.chomp.downcase
   break if play == 'n'
