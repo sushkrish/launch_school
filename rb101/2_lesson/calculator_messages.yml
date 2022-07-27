@@ -1,0 +1,16 @@
+# tracking all calculator messages
+
+en:
+  welcome: "Welcome to the calculator"
+  enter_p1: "Enter the "
+  enter_p2: " number"
+  ord_first: "first"
+  ord_second: "second"
+  zero_div_error: "Can't divide by zero"
+  pick_operation: "Which operation?
+    \nA for addition
+    \nS for subtraction
+    \nM for multiplication
+    \nD for divide"
+  invalid_number: "This is not a valid number"
+  repeat?: "Another calculation? y/n"

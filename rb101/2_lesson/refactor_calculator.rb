@@ -1,3 +1,13 @@
+require 'yaml'
+require 'pry'
+MESSAGES = YAML.load_file('calculator_messages.yml')
+LANGUAGE = 'en'
+puts MESSAGES.inspect
+
+def msg(key)
+  MESSAGES[LANGUAGE][key]
+end
+
 def add(num1, num2)
   num1 + num2
 end
@@ -15,27 +25,23 @@ def div(num1, num2)
 end
 
 def get_valid_num(ordinal)
-  puts 'Enter the ' + ordinal + ' number'
+  puts msg("enter_p1") + msg(ordinal) + msg("enter_p2")
   num = gets.chomp
   if num.to_f.to_s == num
     num.to_f
   elsif num.to_i.to_s == num
     num.to_i
   else
-    puts 'this is not a valid number'
+    puts msg("invalid_number")
     get_valid_num(ordinal)
   end
 end
 
 loop do
-  puts 'Welcome to Calculator'
-  n1 = get_valid_num('first')
-  n2 = get_valid_num('second')
-  puts("Which operation?
-    A for addition
-    S for subtraction
-    M for multiplication
-    D for divide")
+  puts msg("welcome")
+  n1 = get_valid_num("ord_first")
+  n2 = get_valid_num("ord_second")
+  puts msg("pick_operation")
   op = gets.chomp.upcase
 
   case op
@@ -46,11 +52,11 @@ loop do
     begin
       puts "#{n1} / #{n2} = #{div(n1, n2)}"
     rescue ZeroDivisionError
-      puts "Can't divide by zero"
+      puts msg("zero_div_error")
     end
   end
 
-  puts 'Another calculation? y/n?'
+  puts msg("repeat?")
   repeat = gets.chomp.downcase
   break if repeat == 'n'
 end
