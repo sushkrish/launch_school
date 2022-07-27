@@ -1,0 +1,13 @@
+#strings for mortgage calculator
+
+en:
+  welcome: "This is a mortage calculator"
+  enter_loan_amount: "What's your total loan amount?"
+  invalid_input: "This is not a valid input"
+  enter_loan_duration: "What's your loan duration in months?"
+  enter_apr: "What's your annual percentage rate?
+    \n e.g. for 24% enter 24"
+  monthly_payment_amount: "Assuming monthly compounding, your monthly payment is: "
+  repeat?: "Calculate another mortage? y/n"
+es:
+  welcome: "Esto es la calculadora de mortgage"
