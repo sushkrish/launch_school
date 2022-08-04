@@ -1,4 +1,3 @@
 # README #
 
-#Launch School Curriculum
-Divided by courses and chapters. 
+#Launch School curriculum divided by courses and chapters. 
