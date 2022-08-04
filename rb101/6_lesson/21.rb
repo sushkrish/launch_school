@@ -1,11 +1,14 @@
 CARDS = [2, 3, 4, 5, 6, 7, 8, 9, 10, :jack, :queen, :king, :ace]
 STATE = [:PLAYING, :PLAYER_BUSTED, :DEALER_BUSTED, :PLAYER_WIN, :DEALER_WIN, :TIE]
+ACE_DIFF = 10
+WIN_TOTAL = 21
+DEALER_LIMIT = 17
 
 def init_deck
-  { heart: CARDS.clone,
-    diamond: CARDS.clone,
-    clover: CARDS.clone,
-    spade: CARDS.clone }
+  { heart: CARDS.clone.shuffle,
+    diamond: CARDS.clone.shuffle,
+    clover: CARDS.clone.shuffle,
+    spade: CARDS.clone.shuffle }
 end
 
 def card_value(card)
@@ -19,23 +22,18 @@ def card_value(card)
 end
 
 def draw_card(deck)
-  suit = deck.keys.sample
-  deck[suit].shuffle!
-  deck[suit].pop
+  deck[deck.keys.sample].pop
 end
 
 def score(hand)
-  # returns max possible score less than 21
+  # returns max possible score less than 2
   total = hand.map { |c| card_value(c) }.sum
   num_aces = hand.count { |c| c == :ace }
-  num_aces.times { total -= 10 if total > 21 }
+  num_aces.times { total -= ACE_DIFF if total > WIN_TOTAL }
   total
 end
 
-def compare_cards(dealer_hand, player_hand)
-  dealer_score = score(dealer_hand)
-  player_score = score(player_hand)
-
+def compare_cards(dealer_score, player_score)
   if dealer_score > player_score
     :DEALER_WIN
   elsif player_score > dealer_score
@@ -76,11 +74,13 @@ end
 
 play = true
 while play
-  puts "\n\n\n" + "=" * 30 + "\n\tTHIS IS 21!"
+  puts "\n\n\n" + "=" * 30 + "\n\tTHIS IS #{WIN_TOTAL}!"
   puts "=" * 30
   deck = init_deck
   player_hand = [0, 0].map { |_| draw_card(deck) }
   dealer_hand = [0, 0].map { |_| draw_card(deck) }
+  player_score = score(player_hand)
+  dealer_score = score(dealer_hand)
   state = :PLAYING
 
   # player_turn
@@ -95,18 +95,20 @@ while play
     player_hand << draw_card(deck)
     puts "You drew: #{player_hand[-1]}"
 
-    state = :PLAYER_BUSTED if score(player_hand) > 21
+    player_score = score(player_hand)
+    state = :PLAYER_BUSTED if player_score > WIN_TOTAL
   end
 
   # dealer turn
-  while state == :PLAYING && score(dealer_hand) < 17
+  while state == :PLAYING && dealer_score < DEALER_LIMIT
     dealer_hand << draw_card(deck)
-    state = :DEALER_BUSTED if score(dealer_hand) > 21
+    dealer_score = score(dealer_hand)
+    state = :DEALER_BUSTED if dealer_score > WIN_TOTAL
   end
 
-  state = compare_cards(dealer_hand, player_hand) if state == :PLAYING
+  state = compare_cards(dealer_score, player_score) if state == :PLAYING
   show_outcome(state, dealer_hand, player_hand)
 
   print "\nPlay again? [y/n]: "
-  play = (gets.chomp.downcase == 'y')
+  play = ("yh".include? gets.chomp.downcase)
 end
