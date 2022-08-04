@@ -1,0 +1,23 @@
+#Some notes on pry
+
+require 'pry'
+
+binding.pry
+
+once in pry repl:
+- exit to stop prying on binding and proceed with execution
+- whereami <number_of_lines> : shows n lines above and below the line where binding.pry is inserted in the code.
+
+Extension of pry:
+- pry-byebug extends pry with additional commands like next, step, & continue
+- other extensions include pry-nav and pry-debugger
+
+gem install pry-byebug
+require 'pry-byebug'
+use binding.pry in code
+during exeuction, pry repl opens up at the binding.pry line. 
+Using the command next will execute the next line and open the pry repl again. 
+'step' will walk through any other function call rather than just executing it. 
+'continue' will end the pry session. 
+
+See here for all the details https://github.com/deivid-rodriguez/pry-byebug#commands
