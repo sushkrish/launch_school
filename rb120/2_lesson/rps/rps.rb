@@ -30,17 +30,18 @@ class Moves
 end
 
 class Player
-  attr_accessor :name
+  attr_accessor :name, :move
 
   def initialize(name)
     self.name = name.capitalize
+    self.move = nil
   end
 
   def choose
-    Moves.move
+    self.move = Moves.move
   end
 
-  def show_move(move)
+  def show_move()
     puts "#{name} picked #{move}"
   end
 end
@@ -54,7 +55,7 @@ class HumanPlayer < Player
   def choose
     puts "Pick your move"
     Moves.show_options
-    Moves.to_move(gets.chomp)
+    self.move = Moves.to_move(gets.chomp)
   end
 end
 
@@ -86,13 +87,13 @@ class Game
   def play
     draw_line
 
-    move1 = player.choose
-    player.show_move(move1)
+    player.choose
+    player.show_move()
 
-    move2 = computer.choose
-    computer.show_move(move2)
+    computer.choose
+    computer.show_move()
 
-    result = Moves.compare(move1, move2)
+    result = Moves.compare(player.move, computer.move)
     display_winner([player, computer], result)
   end
 
