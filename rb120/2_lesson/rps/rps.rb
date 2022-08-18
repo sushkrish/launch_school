@@ -1,12 +1,12 @@
 class Moves
   def self.move
-    @@MOVES.sample
+    MOVES.sample
   end
 
   def self.compare(move1, move2)
-    if @@RULES[move1] == move2
+    if RULES[move1] == move2
       -1
-    elsif @@RULES[move2] == move1
+    elsif RULES[move2] == move1
       1
     else
       0
@@ -14,7 +14,7 @@ class Moves
   end
 
   def self.show_options
-    @@MOVES.each { |move| puts "#{move.to_s[0]} for #{move}" }
+    MOVES.each { |move| puts "#{move.to_s[0]} for #{move}" }
   end
 
   def self.to_move(input)
@@ -25,8 +25,8 @@ class Moves
     end
   end
 
-  @@MOVES = [:ROCK, :PAPER, :SCISSOR]
-  @@RULES = { ROCK: :SCISSOR, PAPER: :ROCK, SCISSOR: :PAPER }
+  MOVES = [:ROCK, :PAPER, :SCISSOR]
+  RULES = { ROCK: :SCISSOR, PAPER: :ROCK, SCISSOR: :PAPER }
 end
 
 class Player
@@ -41,7 +41,7 @@ class Player
     self.move = Moves.move
   end
 
-  def show_move()
+  def show_move
     puts "#{name} picked #{move}"
   end
 end
