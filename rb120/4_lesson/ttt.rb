@@ -4,64 +4,65 @@ class Board
   EMPTY = '_'
   attr_accessor :grid
 
-  def initialize()
+  def initialize
     clear
   end
 
   def clear
-    self.grid = [1,2,3].map {|_v| [EMPTY, EMPTY, EMPTY] } 
+    self.grid = [1, 2, 3].map { |_v| [EMPTY, EMPTY, EMPTY] }
   end
 
   def draw
-   puts ""
-   3.times do |i|
-     print "\n\t\t"
-     3.times {|j| print grid[i][j] + " "}
+    puts ""
+    3.times do |i|
+      print "\n\t\t"
+      3.times { |j| print grid[i][j] + " " }
     end
   end
 
-  def who_won?
+  def grid_sums
+    vals = { SYM1 => -1, SYM2 => 1, EMPTY => 0 }
     sums = []
     g = grid.map do |r|
-      r.map do |v|
-        case v 
-        when SYM1 then -1
-        when SYM2 then 1
-        else 0
-        end
-      end
+      r.map { |v| vals[v] }
     end
-    g.each {|r| sums << r.sum }
-    g.transpose.each {|c| sums << c.sum}
-    sums << ((0..2).map{|i| g[i][i]}.sum)
-    sums << ((0..2).map{|i| g[i][2-i]}.sum)
+    g.each { |r| sums << r.sum }
+    g.transpose.each { |c| sums << c.sum }
+    sums << ((0..2).map { |i| g[i][i] }.sum)
+    sums << ((0..2).map { |i| g[i][2 - i] }.sum)
+    sums
+  end
+
+  def who_won?
+    sums = grid_sums
     sums.each do |val|
       return SYM1 if val == -3
       return SYM2 if val == 3
     end
-    return "TIE" if empty_squares.size ==0
+    return "TIE" if empty_squares.empty?
     EMPTY
   end
 
   def mark_square(i, j, mark)
-    self.grid[i][j] = mark
+    grid[i][j] = mark
   end
 
   def empty_squares
-    indices = (0..2).map {|i| (0..2).map {|j| [i,j]}}
-    indices.flatten!(1).select! {|i| grid[i[0]][i[1]] == EMPTY}
+    indices = (0..2).map { |i| (0..2).map { |j| [i, j] } }
+    indices.flatten!(1).select! { |i| grid[i[0]][i[1]] == EMPTY }
   end
 end
 
 class Player
   attr_accessor :name, :mark
+
   def initialize(mark, name = "Computer")
     self.mark = mark
     self.name = name
   end
 
   def play(board)
-    (r,c) = board.empty_squares.sample
+    (r, c) = board.empty_squares.sample
     board.mark_square(r, c, mark)
   end
 end
@@ -71,7 +72,7 @@ class HumanPlayer < Player
     super(mark)
     puts "What's your name?"
     self.name = gets.chomp.capitalize
-  end 
+  end
 
   def play(board)
     print "\n\nPlay where? pick row (1,2,3): "
@@ -83,14 +84,14 @@ class HumanPlayer < Player
 end
 
 class TTT
-  STATES = [:TURN1,:TURN2, :WINNER1, :WINNER2, :TIE, :STOP]
+  STATES = [:TURN1, :TURN2, :WINNER1, :WINNER2, :TIE, :STOP]
   attr_accessor :player1, :player2, :board, :state
-  
+
   def initialize
     self.player1 = HumanPlayer.new(Board::SYM1)
     self.player2 = Player.new(Board::SYM2)
-    self.state = :TURN1
     self.board = Board.new
+    new_game
   end
 
   def update_state
@@ -103,24 +104,24 @@ class TTT
   end
 
   def switch_turns
-    self.state = ( state == :TURN1 ? :TURN2 : :TURN1)
+    self.state = (state == :TURN1 ? :TURN2 : :TURN1)
   end
 
   def display_result
-    puts "\n" + "**"*20
+    puts "\n" + "**" * 20
     case state
     when :TIE then puts "It's a TIE!"
     when :WINNER1 then puts "#{player1.name} WINS!"
     when :WINNER2 then puts "#{player2.name} WINS!"
     end
-    puts "**"*20
+    puts "**" * 20
   end
 
   def new_game
     self.state = :TURN1
     board.clear
     puts ""
-    puts "=="*20 
+    puts "==" * 20
     puts "This is TIC TAC TOE!"
     board.draw
   end
@@ -143,7 +144,6 @@ class TTT
   end
 
   def play
-    new_game
     while state != :STOP
       if state == :TURN1
         take_turn(player1)
