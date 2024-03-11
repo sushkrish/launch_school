@@ -1,11 +1,24 @@
 { 
-"intro" : "Welcome to calculator",
-"getNum1" : "What's the first number?",
-"getNum2" : "What's the second number?",
-"invalidNum" : "Hmm... that doesn't look like a valid number.",
-"getOperator" : "What operation would you like to perform?\n1) Add\n2) Subtract\n3) Multiply\n4) Divide",
-"invalidOperator" : "Must choose 1, 2, 3, or 4",
-"shareResult" : "The result is:",
-"repeatCalc" : "Do you want to calculate something else? y/n",
-"invalidYN" : "Didn't understand that. Say y/n."
+  "EN": { 
+    "intro" : "Welcome to calculator",
+    "getNum1" : "What's the first number?",
+    "getNum2" : "What's the second number?",
+    "invalidNum" : "Hmm... that doesn't look like a valid number.",
+    "getOperator" : "What operation would you like to perform?\n1) Add\n2) Subtract\n3) Multiply\n4) Divide",
+    "invalidOperator" : "Must choose 1, 2, 3, or 4",
+    "shareResult" : "The result is:",
+    "repeatCalc" : "Do you want to calculate something else? y/n",
+    "invalidYN" : "Didn't understand that. Say y/n."
+  },
+  "ES": {
+    "intro" : "Bienvenido a la calculadora",
+    "getNum1" : "¿Cuál es el primer número?",
+    "getNum2" : "¿Cuál es el segundo número?",
+    "invalidNum" : "Hmm... ese no parece un número válido.",
+    "getOperator" : "¿Qué operación te gustaría hacer?\n1) Sumar\n2) Sustaer\n3) Multiplicar\n4) Dividir",
+    "invalidOperator" : "Debes elegir 1, 2, 3 o 4",
+    "shareResult" : "El resulto es:",
+    "repeatCalc" : "¿Quieres calcular algo más? y/n",
+    "invalidYN" : "No entendí eso. Say y/n."
+  }
 }
