@@ -1,0 +1,11 @@
+{ 
+"intro" : "Welcome to calculator",
+"getNum1" : "What's the first number?",
+"getNum2" : "What's the second number?",
+"invalidNum" : "Hmm... that doesn't look like a valid number.",
+"getOperator" : "What operation would you like to perform?\n1) Add\n2) Subtract\n3) Multiply\n4) Divide",
+"invalidOperator" : "Must choose 1, 2, 3, or 4",
+"shareResult" : "The result is:",
+"repeatCalc" : "Do you want to calculate something else? y/n",
+"invalidYN" : "Didn't understand that. Say y/n."
+}
