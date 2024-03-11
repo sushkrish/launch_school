@@ -14,6 +14,7 @@ const ALIAS = {
   sc : 'scissors',
   p : 'paper'
 };
+const WINNING_SCORE = 3;
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -40,9 +41,9 @@ function displayRoundWinner(winner) {
 }
 
 function displayFinalWinner(score) {
-  if (score.user === 3) {
+  if (score.user === WINNING_SCORE) {
     prompt(`You win the best of 5!!! ${score.user} - ${score.computer}`);
-  } else if (score.computer === 3) {
+  } else if (score.computer === WINNING_SCORE) {
     prompt(`Computer wins the best of 5 :( ${score.computer} - ${score.user}`);
   }
 }
@@ -51,15 +52,15 @@ function displayScore(score) {
   prompt(`TOTAL: User ${score.user} | Computer ${score.computer} `);
 }
 
-function gameOver(score) {
-  return (score.user === 3 || score.computer === 3);
+function isGameOver(score) {
+  return (score.user === WINNING_SCORE || score.computer === WINNING_SCORE);
 }
 
 while (true) {
   //initialize scores for best of 5.
   let score = {user : 0, computer : 0, tie : 0};
 
-  while (!gameOver(score)) {
+  while (!isGameOver(score)) {
     //User makes a choice
     prompt(`Choose one: ${VALID_CHOICES.join(', ')}`);
     prompt(`Please enter abbrevations: ${Object.keys(ALIAS).join(', ')}`);
