@@ -1,5 +1,5 @@
 const readline = require("readline-sync");
-const text = require('./calculator_messages.json')
+const text = require('./calculator_messages.json');
 
 console.log(text.intro);
 
