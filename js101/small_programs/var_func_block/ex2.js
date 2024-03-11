@@ -9,5 +9,5 @@ updateColors(colors);
 console.log(colors);
 
 /**
- * ["red", "green", "blue","yellow"]
+ * ["red", "green", "blue",undefined]
  */

@@ -10,6 +10,6 @@ let word = "hello";
 let capitalizedWord = capitalize(word);
 let exclaimedWord = exclaim(capitalizedWord);
 
-console.log(word); //
+console.log(word); //hello
 console.log(capitalizedWord); //Hello
 console.log(exclaimedWord); //Hello!!!
