@@ -1,10 +1,6 @@
 const readline = require("readline-sync");
 const TEXT = require('./calculator_messages.json');
-let language = 'ES';
-
-console.log(TEXT[language].intro);
-
-let runCalculator = true;
+let language = 'EN';
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -14,6 +10,21 @@ function invalidNumber(number) {
   return number.trimStart() === '' || Number.isNaN(Number(number));
 }
 
+
+console.log(TEXT[language].intro);
+
+//get language
+console.log(TEXT[language].langChoice);
+let input = readline.question().toUpperCase();
+
+while (!['EN','ES'].includes(input)) {
+  prompt(TEXT[language].invalidLang);
+  input = readline.question();
+}
+language = input;
+
+//start calculator program
+let runCalculator = true;
 
 while (runCalculator) {
   // Ask the user for the first number.

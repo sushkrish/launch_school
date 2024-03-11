@@ -1,6 +1,8 @@
 { 
   "EN": { 
     "intro" : "Welcome to calculator",
+    "langChoice": "Which language do you prefer? EN or ES?",
+    "invalidLang": "Must choose EN or ES.",
     "getNum1" : "What's the first number?",
     "getNum2" : "What's the second number?",
     "invalidNum" : "Hmm... that doesn't look like a valid number.",
@@ -12,6 +14,8 @@
   },
   "ES": {
     "intro" : "Bienvenido a la calculadora",
+    "langChoice": "¿Cuál idioma prefieres? EN o ES?",
+    "invalidLang": "Debes elegir EN o ES.",
     "getNum1" : "¿Cuál es el primer número?",
     "getNum2" : "¿Cuál es el segundo número?",
     "invalidNum" : "Hmm... ese no parece un número válido.",
