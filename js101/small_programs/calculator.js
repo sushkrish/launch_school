@@ -1,4 +1,4 @@
-("Welcome to calculator");
+console.log("Welcome to calculator");
 
 const readline = require("readline-sync");
 
