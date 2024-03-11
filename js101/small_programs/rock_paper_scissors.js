@@ -6,7 +6,7 @@ function prompt(message) {
   console.log(`=> ${message}`);
 }
 
-function displayWinner(choice, computerChoice){
+function displayWinner(choice, computerChoice) {
   if ((choice === 'rock' && computerChoice === 'scissors') ||
       (choice === 'paper' && computerChoice === 'rock') ||
       (choice === 'scissors' && computerChoice === 'paper')) {
