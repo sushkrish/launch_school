@@ -1,14 +1,14 @@
 /**
- * Problem: 
+ * Problem:
  *  N rows
- *  1st row contains 1 item, 
+ *  1st row contains 1 item,
  *  Nth row contains N items.
- *  Items are consecutive multiples of 2. 
+ *  Items are consecutive multiples of 2.
  * Input: row #
  * Ouput: sum of items in row #
  */
 function sumNthRow(n) {
-  //Identify startVal = starting value of nth row 
+  //Identify startVal = starting value of nth row
   let startVal = firstVal(n);
   console.log(startVal);
 
@@ -25,12 +25,12 @@ function sumNthRow(n) {
 }
 
 /**
- * Input: row number n 
+ * Input: row number n
  * Output: first value of row n
  */
 function firstVal(n) {
   //calculate beforeNItems = number of items upto row n-1 = 1 + 2 + 3 + ... + (n-1)
-  let beforeNItems = (n-1)*n/2;
+  let beforeNItems = (n - 1) * n / 2;
 
   //return 2 * (beforeNItems + 1)
   return 2 * (beforeNItems + 1);
