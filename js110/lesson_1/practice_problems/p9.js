@@ -7,5 +7,5 @@ let ages = {
   Spot: 237
 };
 
-let sum = Object.values(ages).reduce((sum, age) => sum += age, 0);
+let sum = Object.values(ages).reduce((sum, age) => sum + age, 0);
 console.log(sum);
