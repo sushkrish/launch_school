@@ -2,19 +2,19 @@ const SIGNS = {player1: 'X', player2: 'O'};
 const PLAYERS = {player1: 'You', player2: 'Computer'};
 let rls = require('readline-sync');
 
-function prompt(message){
+function prompt(message) {
   console.log(`==> ${message}`);
 }
 
-function getEmptyBoard(){
-  board = {};
-  for (let square = 1; square < 10; square++){
+function getEmptyBoard() {
+  let board = {};
+  for (let square = 1; square < 10; square++) {
     board[square] = square.toString();
   }
   return board;
 }
 
-function displayBoard(board){
+function displayBoard(board) {
   console.clear();
 
   console.log(`You are ${SIGNS['player1']}. ${PLAYERS['player2']} is ${SIGNS['player2']}.`);
@@ -33,9 +33,9 @@ function displayBoard(board){
   console.log('');
 }
 
-function getEmptySquares(board){
+function getEmptySquares(board) {
   return Object.keys(board)
-  .filter(key => !Object.values(SIGNS).includes(board[key]));
+    .filter(key => !Object.values(SIGNS).includes(board[key]));
 }
 
 function playerChoosesSquare(board) {
@@ -58,19 +58,15 @@ function computerChoosesSquare(board) {
   board[Number(square)] = SIGNS['player2'];
 }
 
-function someoneWon(board){
-  return false;
-}
-
-function boardFull(board){
+function boardFull(board) {
   return getEmptySquares(board).length === 0;
 }
 
-function someoneWon(board){
+function someoneWon(board) {
   return !!detectWinner(board);
 }
 
-function detectWinner(board){
+function detectWinner(board) {
   let winningLines = [
     [1, 2, 3], [4, 5, 6], [7, 8, 9], // rows
     [1, 4, 7], [2, 5, 8], [3, 6, 9], // columns
@@ -78,19 +74,9 @@ function detectWinner(board){
   ];
 
   for (let line = 0; line < winningLines.length; line++) {
-    let [ sq1, sq2, sq3 ] = winningLines[line];
-
-    if (
-        board[sq1] === SIGNS['player1'] &&
-        board[sq2] === SIGNS['player1'] &&
-        board[sq3] === SIGNS['player1']
-    ) {
+    if (winningLines[line].every(val => board[val] === SIGNS['player1'])) {
       return PLAYERS['player1'];
-    } else if (
-        board[sq1] === SIGNS['player2'] &&
-        board[sq2] === SIGNS['player2'] &&
-        board[sq3] === SIGNS['player2']
-    ) {
+    } else if (winningLines[line].every(val => board[val] === SIGNS['player2'])) {
       return  PLAYERS['player2'];
     }
   }
@@ -119,9 +105,9 @@ while (true) {
     console("It's a tie!");
   }
 
-  prompt("Play again? (y or n): ")
+  prompt("Play again? (y or n): ");
   let choice = rls.question().trim();
   if (choice.toLowerCase() !== 'y') break;
-} 
+}
 
-prompt('Thanks for playing Tic Tac Toe!')
+prompt('Thanks for playing Tic Tac Toe!');
