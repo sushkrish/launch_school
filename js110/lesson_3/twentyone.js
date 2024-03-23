@@ -71,7 +71,6 @@ function scoreHand(hand) {
 }
 
 while (true) {
-
   //1. Initialize
   let deck = initializeDeck();
 
@@ -109,7 +108,6 @@ while (true) {
       break;
     }
   }
-
   if (playerScore > 21) break;
 
   //5. Dealer turn: hit or stay
@@ -133,11 +131,7 @@ while (true) {
       break;
     }
   }
-  if (dealerScore > 21) {
-    break;
-  } else {
-    prompt("Dealer chose to stay.");
-  }
+  if (dealerScore > 21) break;
 
   //7. Compare cards and declare winner.
   console.clear();
@@ -151,6 +145,5 @@ while (true) {
   } else {
     prompt ('Dealer wins!');
   }
-
   break;
 }
