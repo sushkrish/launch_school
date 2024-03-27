@@ -6,18 +6,16 @@ function minimumSum(arr) {
 
   // var to store minSum candidate - first 5 consec values
   let minSum = arraySum(arr.slice(0,5));
-  debugger;
+  
   // iterate through arr, looking for sequences with smaller minSum.
   let idx = 0;
   while (idx + 5 <= arr.length) {
     let sum = arraySum(arr.slice(idx, idx + 5));
-    debugger;
     if (sum < minSum) {
       minSum = sum;
     }
     idx++;
   }
-  debugger;
   return minSum;
 }
 

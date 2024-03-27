@@ -1,6 +1,8 @@
 let rls = require('readline-sync');
 const CARDS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
 const SUITS = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
+const GOAL_SCORE = 21;
+const DEALER_MAX = 17;
 function prompt(message) {
   console.log(message);
 }
@@ -62,7 +64,7 @@ function scoreHand(hand) {
   });
 
   hand.forEach(([_, card]) => {
-    if (card === 'Ace' && score > 21) {
+    if (card === 'Ace' && score > GOAL_SCORE) {
       score -= 10;
     }
   });
@@ -102,18 +104,18 @@ while (true) {
     playerScore = scoreHand(hands['Player']);
 
     //4. If player bust, dealer wins.
-    if (playerScore > 21) {
+    if (playerScore > GOAL_SCORE) {
       prompt(`Oops. Your hand scores: ${playerScore}`);
       prompt("You're BUSTED!");
       break;
     }
   }
-  if (playerScore > 21) break;
+  if (playerScore > GOAL_SCORE) break;
 
   //5. Dealer turn: hit or stay
   //   - repeat until total >= 17
   let dealerScore = scoreHand(hands['Dealer']);
-  while (dealerScore < 17) {
+  while (dealerScore < DEALER_MAX) {
     console.clear();
     displayHands(hands);
     prompt(`Dealer's hand scores: ${dealerScore}`);
@@ -125,13 +127,13 @@ while (true) {
     dealerScore = scoreHand(hands['Dealer']);
 
     //6. If dealer busts, player wins.
-    if (dealerScore > 21) {
+    if (dealerScore > GOAL_SCORE) {
       prompt(`Oops. Dealer's hand scores: ${dealerScore}`);
       prompt("Dealer is BUSTED!");
       break;
     }
   }
-  if (dealerScore > 21) break;
+  if (dealerScore > GOAL_SCORE) break;
 
   //7. Compare cards and declare winner.
   console.clear();
